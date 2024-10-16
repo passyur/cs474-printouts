@@ -1,0 +1,74 @@
+jacobm@Jacobs-MacBook-Pro-346 474/repo % python3 resolution.py          
+Enter the formula in CNF
+Example: {x, y, z} {!x, y, z}. ! Denotes a negated literal
+{q, !r} {!p, r} {!q, r, p} {p, q, !q} {!r, q}
+
+Apply resolution rules by providing clause numbers and the literal on which you want to resolve, e.g.
+1:{x, y} 2:{!x, z}
+>> 1 2 x
+1:{y, z}
+Enter 'b' to backtrack, and 'done' to indicate that you have saturated resolution steps.
+Enter 'help' to display this message.
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r}
+>> 1 2 r
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q}
+>> 2 3 p
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 4 5 q
+Resolution resulted in redundant clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 4 5 r
+One of the clauses must contain the literal you provided and the other clause must contain its negation
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 4 5 p
+One of the clauses must contain the literal you provided and the other clause must contain its negation
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 3 4 q
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 5 r
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 3 r
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 2 3 p
+Resolution resulted in redundant clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 3 q
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 2 r
+Resolution resulted in redundant clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 5 q
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 1 3 q
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> 3 4 q
+Resolution resulted in trivial clause
+
+1:{!r, q} 2:{!p, r} 3:{!q, p, r} 4:{!p, q} 5:{!q, r}
+>> done
+Enter the name of the file where you want to save your proof. If you press Enter, it will be saved to proof.json
+22aproof.json
+jacobm@Jacobs-MacBook-Pro-346 474/repo % ls
+22aproof.json 2aproof.json  README.md     hw2_1         resolution.py
+jacobm@Jacobs-MacBook-Pro-346 474/repo % python3 resolution.py --formula '{q, !r} {!p, r} {!q, r, p} {p, q, !q} {!r, q}' --proof '22aproof.json'
+Proof object checks out! Formula is sat

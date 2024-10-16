@@ -1,0 +1,11 @@
+(declare-fun r () Bool)
+(declare-fun q () Bool)
+(declare-fun p () Bool)
+(assert (or q (not r)))
+(assert (or (not p) r))
+(assert (or (not q) r p))
+(assert (or p q (not q)))
+(assert (or (not r) q))
+
+(check-sat)
+(get-model)
