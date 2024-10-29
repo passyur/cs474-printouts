@@ -1,0 +1,10 @@
+(declare-const u2 Int)
+(declare-const l2 Int)
+(declare-const u1 Int)
+(declare-const l1 Int)
+(assert (forall ((z Int))
+  (=> (and (< l1 z) (< z u1) (< l2 z) (< z u2))
+      (exists ((w Int))
+        (and (< l1 w) (< w u1) (< l2 w) (< w u2) (or (< w z) (< z w)) )))))
+
+(apply qe)

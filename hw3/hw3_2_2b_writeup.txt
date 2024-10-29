@@ -1,0 +1,35 @@
+Note how we must have some structure like:
+
+     Bm	    BM   Dm     DM
+     |-------|   |-------|
+|------|   |-------|	|------.....
+Am    AM   Cm     CM	Am (again, and yet same as before? Contradiction)
+
+This produces the inequality chain we use in our Z3 validity (or rather, invalidity) proof:
+
+Am < Bm < AM < Cm < BM < Dm < CM < Am < DM.
+
+The human readable upshot is that Am cannot be less than itself.
+
+I included a redundant (not (distinct ...)) statement for testing. You get the following printout:
+
+jacobm@Jacobs-MacBook-Pro-449 474/z3 % ./z3 hw3_2_2b.smt.s
+sat
+(
+  (define-fun Am () Int
+    0)
+  (define-fun DM () Int
+    0)
+  (define-fun Cm () Int
+    0)
+  (define-fun AM () Int
+    0)
+  (define-fun Dm () Int
+    0)
+  (define-fun Bm () Int
+    0)
+  (define-fun BM () Int
+    0)
+  (define-fun CM () Int
+    0)
+)

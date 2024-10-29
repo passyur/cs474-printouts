@@ -1,0 +1,68 @@
+Proceeding, we have the enclosed formula in DNF, and so are enabled to write for L = {l1, l2} and U = {u1, u2}:
+
+3w (( /\ for l in L and u in U, l < u ) /\ (w < z) \/ (z < w) )),
+
+which is equivalent to (( /\ for l in L and u in U, l < u ) /\ 3w (w < z \/ z < w)). We use a pretty direct copy of the argument from Proposition 4.4 and its proof in the textbook to get the quantifier free formula:
+
+
+We get the following prinout from Z3:
+
+jacobm@Jacobs-MacBook-Pro-449 474/z3 % ./z3 hw3_2a.smt.s  
+(goals
+(goal
+  (let ((a!1 (or (<= (+ (* (- 1) l1) u2) 1)
+                 (<= (+ (* (- 1) l2) u2) 2)
+                 (<= (+ u1 (* (- 1) u2)) (- 2))))
+        (a!2 (not (<= (+ l1 (* (- 1) u1)) (- 2))))
+        (a!3 (not (<= (+ l2 (* (- 1) u1)) (- 2))))
+        (a!4 (not (<= (+ (* (- 1) u2) u1) (- 1))))
+        (a!5 (and (<= (+ (* (- 1) u1) u2) 0) (<= (+ u1 (* (- 1) u2)) 0))))
+  (let ((a!6 (and a!1
+                  (<= (+ l1 (* (- 1) u2)) (- 2))
+                  (<= (+ (* (- 1) u1) u2) 0)
+                  (<= (+ l2 (* (- 1) u2)) (- 2))
+                  (or a!2 a!3 a!4 a!5))))
+    (not a!6)))
+  (let ((a!1 (not (<= (+ l2 (* (- 1) u2)) (- 2))))
+        (a!2 (not (<= (+ (* (- 1) u1) u2) 0)))
+        (a!3 (not (<= (+ l1 (* (- 1) u2)) (- 2))))
+        (a!4 (and (<= (+ (* (- 1) u2) u1) 1) (<= (+ u2 (* (- 1) u1)) 0)))
+        (a!5 (or (<= (+ (* (- 1) l1) u1) 1)
+                 (<= (+ (* (- 1) l2) u1) 2)
+                 (<= (+ u2 (* (- 1) u1)) (- 2)))))
+  (let ((a!6 (and (or a!1 a!2 a!3 a!4)
+                  a!5
+                  (<= (+ l1 (* (- 1) u1)) (- 2))
+                  (<= (+ l2 (* (- 1) u1)) (- 2))
+                  (<= (+ (* (- 1) u2) u1) (- 1)))))
+    (not a!6)))
+  (let ((a!1 (not (<= (+ l2 (* (- 1) u2)) (- 2))))
+        (a!2 (not (<= (+ (* (- 1) u1) u2) 0)))
+        (a!3 (not (<= (+ l1 (* (- 1) u2)) (- 2))))
+        (a!4 (and (<= (+ (* (- 1) u2) l1) (- 1)) (<= (+ u2 (* (- 1) l1)) 2)))
+        (a!5 (not (<= (+ l1 (* (- 1) u1)) (- 2))))
+        (a!6 (not (<= (+ l2 (* (- 1) u1)) (- 2))))
+        (a!7 (not (<= (+ (* (- 1) u2) u1) (- 1))))
+        (a!8 (and (<= (+ (* (- 1) u1) l1) (- 1)) (<= (+ u1 (* (- 1) l1)) 2))))
+  (let ((a!9 (and (or a!1 a!2 a!3 a!4)
+                  (<= (+ (* (- 1) u1) l1) (- 2))
+                  (<= (+ l2 (* (- 1) l1)) 0)
+                  (<= (+ (* (- 1) u2) l1) (- 2))
+                  (or a!5 a!6 a!7 a!8))))
+    (not a!9)))
+  (let ((a!1 (not (<= (+ l2 (* (- 1) u2)) (- 2))))
+        (a!2 (not (<= (+ (* (- 1) u1) u2) 0)))
+        (a!3 (not (<= (+ l1 (* (- 1) u2)) (- 2))))
+        (a!4 (and (<= (+ (* (- 1) u2) l2) (- 1)) (<= (+ u2 (* (- 1) l2)) 2)))
+        (a!5 (not (<= (+ l1 (* (- 1) u1)) (- 2))))
+        (a!6 (not (<= (+ l2 (* (- 1) u1)) (- 2))))
+        (a!7 (not (<= (+ (* (- 1) u2) u1) (- 1))))
+        (a!8 (and (<= (+ (* (- 1) u1) l2) (- 2)) (<= (+ u1 (* (- 1) l2)) 2))))
+  (let ((a!9 (and (or a!1 a!2 a!3 a!4)
+                  (<= (+ l1 (* (- 1) l2)) 0)
+                  (<= (+ (* (- 1) u1) l2) (- 3))
+                  (<= (+ (* (- 1) u2) l2) (- 3))
+                  (or a!5 a!6 a!7 a!8))))
+    (not a!9)))
+  :precision precise :depth 1)
+)

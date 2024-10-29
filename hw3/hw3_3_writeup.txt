@@ -1,0 +1,12 @@
+The printout is as follows:
+
+jacobm@Jacobs-MacBook-Pro-449 474/z3 % ./z3 hw3_3.smt.s
+sat
+(
+  (define-fun y () Int
+    0)
+  (define-fun x () Int
+    0)
+)
+
+This demonstrates that the formula is not valid.
